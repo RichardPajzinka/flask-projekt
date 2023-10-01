@@ -1,3 +1,3 @@
 # flask-projekt
 
-Priebehajuci porjekt 
+Priebehajuci projekt 
