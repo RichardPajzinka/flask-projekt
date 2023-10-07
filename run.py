@@ -1,4 +1,4 @@
-from app import flask_app
+from mdblock.app import flask_app
 
 if __name__ == "__main__":
 	debug = True
