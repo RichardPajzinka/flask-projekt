@@ -1,7 +1,8 @@
 {% extends "_main.jinja" %}
 
-{% block title %} Vitajte na Article {% endblock %}
+{% block title %} Article {{article.title}} {% endblock %}
 
 {% block main %}
-	na tejto stranke budu clanky.
+	<h2> {{ article.title }} </h2>
+	<p> {{ article.content }} </p>
 {% endblock %}

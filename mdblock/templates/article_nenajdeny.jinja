@@ -1,0 +1,14 @@
+{% extends "_main.jinja" %}
+
+{% block title %} Article not found {% endblock %}
+
+{% block main %}
+            <h1>Oops!</h1>
+            <h2>Takyto clanok neexistuje</h2>
+            <p> Bohuzial tento clanok s id "{{ art_id }}" doens't
+                exists :( </p>
+            <div>
+                <a href="/" class="btn btn-primary btn-lg"> Welcome page </a> | 
+                <a href={{ url_for("view_articles") }} class="btn btn-default btn-lg">All articles</a>
+            </div>
+{% endblock %}
