@@ -1,7 +1,7 @@
 <html lang="en">
 
 <head>
-	<title> Vitaj na mojom blogu </title>
+	<title> {% block title %} {% endblock %} </title>
 	<link rel="stylesheet" type="text/css" href={{url_for("static", filename="css/main.css")}}> 
 </head>
 
@@ -19,9 +19,7 @@
 </nav>
 
 <main>
-	<blockquote>
-	Ahojte na tejto blogovacej stranke.
-	</blogovacej>
+	{% block main %} {% endblock %}
 </main>
 
 <footer>

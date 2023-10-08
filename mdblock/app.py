@@ -9,7 +9,15 @@ def welcome_page():
 
 @flask_app.route("/about/")
 def about():
-	return render_template("about.html")
+	return render_template("about.jinja")
+
+@flask_app.route("/admin_page/")
+def admin_page():
+	return render_template("admin.jinja")
+
+@flask_app.route("/article/")
+def article():
+	return render_template("article.jinja")
 
 #@flask_app.route("/admin/")
 #def view_admin():
