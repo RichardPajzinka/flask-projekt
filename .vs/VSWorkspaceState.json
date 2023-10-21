@@ -1,8 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\mdblock\\templates"
+    "\\mdblock",
+    "\\mdblock\\static",
+    "\\mdblock\\static\\css",
+    "\\mdblock\\static\\js",
+    "\\mdblock\\templates",
+    "\\mdblock\\__pycache__"
   ],
-  "SelectedNode": "\\run.py",
+  "SelectedNode": "\\bootstrap.sh",
   "PreviewInSolutionExplorer": false
 }
