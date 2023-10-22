@@ -4,8 +4,13 @@ from flask import request
 from flask import redirect
 from flask import url_for
 from flask import session
+from flask import g
 
 from .database import articles
+
+import sqlite3
+
+DATABASE = "/vagrant/blog.db"
 
 flask_app = Flask(__name__)
 flask_app.secret_key = b'o\xa11\xe6\x84\xb7\x80\xa5\rA\xcf\xaf\xb62\xccA\xe3\xe1\x83\x98\xf4\xf2f['
@@ -65,3 +70,25 @@ def logout_user():
 #def view_admin_name(name):
 #	return"hello z URL: {}".format(name)
 
+def connect_db():
+	rv = sqlite3.connect(DATABASE)
+	rv.row_factory = sqlite3.Row
+	return rv
+
+#spojenie iba jedno a je jedno ake
+def get_db():
+	if not hasattr(g, "sqlite_db"):
+		g.sqlite_db = connect_db()
+	return g.sqlite_db
+
+@flask_app.teardown_appcontext
+def close_db(error):
+	if hasattr(g, "sqlite_db"):
+		g.sqlite_db.close()
+
+def init_db(app):
+	with app.app_context():
+		db = get_db()
+		with open("mdblock/schema.sql", "r") as fp:
+			db.cursor().executescript(fp.read())
+		db.commit()
