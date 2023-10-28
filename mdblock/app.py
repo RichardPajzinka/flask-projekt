@@ -6,14 +6,20 @@ from flask import url_for
 from flask import session
 from flask import g
 
-from .database import articles
+#from .database import articles
 
 import sqlite3
+import os
 
-DATABASE = "/vagrant/blog.db"
+#DATABASE = "/vagrant/blog.db"
 
 flask_app = Flask(__name__)
-flask_app.secret_key = b'o\xa11\xe6\x84\xb7\x80\xa5\rA\xcf\xaf\xb62\xccA\xe3\xe1\x83\x98\xf4\xf2f['
+#flask_app.secret_key = b'o\xa11\xe6\x84\xb7\x80\xa5\rA\xcf\xaf\xb62\xccA\xe3\xe1\x83\x98\xf4\xf2f['
+
+flask_app.config.from_pyfile("/vagrant/configs/default.py")
+
+if "MDBLOCK_CONFIG" in os.environ:
+	flask_app.config.from_envvar("MDBLOCK_CONFIG")
 
 @flask_app.route("/")
 def welcome_page():
@@ -29,13 +35,27 @@ def admin_page():
 		return redirect(url_for("view_login"))
 	return render_template("admin.jinja")
 
-@flask_app.route("/articles/")
+@flask_app.route("/articles/", methods=["GET"])
 def view_articles():
-	return render_template("articles.jinja", articles=articles.items())
+	db = get_db()
+	cur = db.execute("select * from articles order by if desc")
+	#tymto si do premennej articles natiahnem vsetky zaznami
+	articles = cur.fetchall()
+	return render_template("articles.jinja", articles=articles)
+
+@flask_app.route("/articles/", methods=["POST"])
+def add_articles():
+	db = get_db()
+	db.execute("insert into articles (title,content) values (?,?)",
+		[request.form.get("title"), request.form.get("content")])
+	db.commit()
+	return redirect(url_for("view_articles"))
 
 @flask_app.route("/articles/<int:art_id>")
 def view_article(art_id):
-	article = articles.get(art_id)
+	db = get_db()
+	cur = db.execute("select * from where if=(?)",[art_id])
+	article = cur.fetchone()
 	if article:
 		return render_template("article.jinja", article=article)
 	return render_template("article_nenajdeny.jinja", art_id=art_id)
@@ -49,7 +69,7 @@ def login_user():
 	#if request.method == "POST":
 		username = request.form["username"]
 		password = request.form["password"]
-		if username == "admin" and password == "admin":
+		if username == flask_app.config["USERNAME"] and password == flask_app.config["PASSWORD"]:
 			#return "OK"
 			session["logged"] = True
 			return redirect(url_for("admin_page"))
@@ -71,7 +91,7 @@ def logout_user():
 #	return"hello z URL: {}".format(name)
 
 def connect_db():
-	rv = sqlite3.connect(DATABASE)
+	rv = sqlite3.connect(flask_app.config["DATABASE"])
 	rv.row_factory = sqlite3.Row
 	return rv
 
