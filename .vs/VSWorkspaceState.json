@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
     "",
+    "\\configs",
     "\\mdblock",
     "\\mdblock\\static",
     "\\mdblock\\static\\css",
@@ -8,6 +9,6 @@
     "\\mdblock\\templates",
     "\\mdblock\\__pycache__"
   ],
-  "SelectedNode": "\\mdblock\\app.py",
+  "SelectedNode": "\\configs\\development.py",
   "PreviewInSolutionExplorer": false
 }

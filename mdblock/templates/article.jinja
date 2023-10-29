@@ -1,7 +1,9 @@
 {% extends "_main.jinja" %}
 
 {% block title %} Article {{article.title}} {% endblock %}
-
+{% if "logged" in session %}
+		<a href="{{url_for("view_article_editor", art_id=article.if)}}">Uprava clanku</a>
+	{% endif %}
 {% block main %}
 	<h2> {{ article.title }} </h2>
 	<p> {{ article.content }} </p>
