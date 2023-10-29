@@ -3,11 +3,14 @@
 {% block title %} Vitajte na Articles {% endblock %}
 
 {% block main %}
+	{% if "logged" in session %}
+		<a href="{{url_for("view_add_article")}}">Pridat clanok</a>
+	{% endif %}
 	{% if articles %}
 	  <ul>
 	  {% for article in articles %}
 		 <li>
-		     <h2><a href="{{ url_for("view_article", art_id=article.id)}}"> {{ article.title }} </a></h2>
+		     <h2><a href="{{ url_for("view_article", art_id=article.if)}}"> {{ article.title }} </a></h2>
 			 <p> {{ article.content }} </p>
 		 </li>
 	  {% endfor %}
