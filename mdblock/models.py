@@ -13,6 +13,7 @@ class Article(db.Model):
 	title = db.Column(db.String)
 	content = db.Column(db.String)
 
+#ked ideme mirgrovat
 class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String, unique=True)
