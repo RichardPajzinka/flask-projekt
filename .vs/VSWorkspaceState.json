@@ -9,6 +9,6 @@
     "\\mdblock\\templates",
     "\\mdblock\\__pycache__"
   ],
-  "SelectedNode": "\\configs\\development.py",
+  "SelectedNode": "\\mdblock\\templates\\article.jinja",
   "PreviewInSolutionExplorer": false
 }
