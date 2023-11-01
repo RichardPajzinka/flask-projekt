@@ -17,14 +17,14 @@
 
 <body>
 <header>
-	<h1> <a href="{{ url_for("welcome_page") }}"> Richard Pajzinka </h1>
+	<h1> <a href="{{ url_for("view_welcome_page") }}"> Richard Pajzinka </h1>
 </head>
 
 <nav>
 	<ul class=nav>
-		<li> <a href="{{ url_for("about") }}">About</a> </li>
+		<li> <a href="{{ url_for("view_about") }}">About</a> </li>
 		<li> <a href="{{ url_for("view_articles") }}">Articles</a> </li>
-		<li> <a href="{{ url_for("admin_page") }}">Admin page</a> </li>
+		<li> <a href="{{ url_for("view_admin") }}">Admin page</a> </li>
 		{% if "logged" in session %}
 			<li>
 				<form action="{{ url_for("logout_user")}}" method="post">
