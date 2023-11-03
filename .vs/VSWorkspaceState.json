@@ -1,14 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\.vagrant",
+    "\\alembic",
+    "\\alembic\\versions",
     "\\configs",
     "\\mdblock",
     "\\mdblock\\static",
-    "\\mdblock\\static\\css",
-    "\\mdblock\\static\\js",
-    "\\mdblock\\templates",
-    "\\mdblock\\__pycache__"
+    "\\mdblock\\__pycache__",
+    "\\venv",
+    "\\__pycache__"
   ],
-  "SelectedNode": "\\mdblock\\templates\\article.jinja",
+  "SelectedNode": "\\mdblock\\app.py",
   "PreviewInSolutionExplorer": false
 }
